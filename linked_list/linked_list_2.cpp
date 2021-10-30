@@ -40,13 +40,7 @@ void InsertFront(int num){
   tempNode->data = num;
   tempNode->next = NULL;
 
-  // verify if the list is empty:
-  if(head == NULL){
-    head = tempNode;
-    tempNode = NULL;
-    return;
-  }
-
+  // it really doesn't matter if the current list is empty...
   tempNode->next = head;
   head = tempNode;
   tempNode = NULL;
