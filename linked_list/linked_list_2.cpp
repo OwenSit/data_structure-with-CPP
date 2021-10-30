@@ -41,7 +41,7 @@ void InsertFront(int num){
   tempNode->next = NULL;
 
   // it really doesn't matter if the current list is empty...
-  tempNode->next = head;
+  if(head!=NULL) tempNode->next = head;
   head = tempNode;
   tempNode = NULL;
 
