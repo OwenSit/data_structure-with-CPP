@@ -9,7 +9,7 @@ struct Node{
 // we would like to declare the head node as global variable:
 struct Node* head;
 
-void Insert(int num){
+void InsertEnd(int num){
   // now we create a temp node for insertion:
   struct Node* tempNode = new struct Node;
   tempNode->data = num;
@@ -34,6 +34,26 @@ void Insert(int num){
   return;
 };
 
+void InsertFront(int num){
+  // create a new node:
+  struct Node* tempNode = new struct Node;
+  tempNode->data = num;
+  tempNode->next = NULL;
+
+  // verify if the list is empty:
+  if(head == NULL){
+    head = tempNode;
+    tempNode = NULL;
+    return;
+  }
+
+  tempNode->next = head;
+  head = tempNode;
+  tempNode = NULL;
+
+  return;
+}
+
 void Print(){
   struct Node* current = head;
     cout << endl << "Now printing the list" << endl;
@@ -45,6 +65,7 @@ void Print(){
   return;
 };
 
+
 int main() {
   head = NULL;
   int num, tempNum;
@@ -53,7 +74,7 @@ int main() {
   for (int i = 0; i < num; i++){
     cout << "Please insert the " << i+1 << "th number. " << endl;
     cin >> tempNum;
-    Insert(tempNum);
+    InsertFront(tempNum);
   }
   Print();
   return 0;
