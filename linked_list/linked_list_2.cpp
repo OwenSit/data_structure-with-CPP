@@ -49,7 +49,7 @@ void InsertFront(int num){
 }
 
 void InsertPosition(int num, int position){
-
+  // Insert node in between node -- list can not be empty
   // create a new temp node:
   struct Node* tempNode = new struct Node;
   tempNode->data = num;
@@ -60,7 +60,7 @@ void InsertPosition(int num, int position){
   for(int i = 0; i< position - 2; i++){
     current = current->next;
     cout << "Hello" << endl;
-    
+
     // if we are out of range, return
     if(current == NULL){
       cout << "the insert position is invalid" << endl;
@@ -68,9 +68,15 @@ void InsertPosition(int num, int position){
     }
   }
 
-  tempNode->next = current->next;
-  current->next = tempNode;
+  if(position == 1){
+    tempNode->next = current;
+    head = tempNode;
 
+  } 
+  else{
+    tempNode->next = current->next;
+    current->next = tempNode;
+  }
   tempNode = NULL;
 
   return;
@@ -101,7 +107,7 @@ int main() {
   Print();
 
   // now I would like to insert "3" in the 3rd position
-  InsertPosition(4, 3);
+  InsertPosition(4, 1);
   Print();
   return 0;
 } 
