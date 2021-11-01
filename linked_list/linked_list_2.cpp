@@ -93,10 +93,60 @@ void Print(){
   return;
 };
 
+void DeleteNode(int position){
+  struct Node* current = head;
+  // if head node is to be deleted:
+  if (position == 1){
+    if (current->next == NULL){
+      delete current;
+      cout << "the list is now empty" << endl;
+      return;
+    }
+    head = head->next;
+    delete current;
+    
+    return;
+  }
+  // if 2nd node is to be deleted:
+  if (position == 2){
+    if (current->next == NULL){
+      cout << "invalid position" << endl;
+      return;
+    }
+    cout << "current->next->next is " << current->next->next->data;
+    current->next = current->next->next;
+    
+    // move to the target node:
+    // delete current->next;
+    // delete current;
+
+    return;
+  }
+
+  // if 3rd+ position is to be deleted:
+  for (int i = 0; i < position - 2; i++){
+    if (current == NULL){
+      cout << "invalid position" << endl;
+      return;
+    }
+    current = current->next;
+  }
+  if (current->next == NULL){
+    cout << "invalid position" << endl;
+    return;
+  }
+  current->next = current->next->next;
+  
+  // move to the target position:
+  current = current->next;
+  delete current;
+
+  return;
+};
 
 int main() {
   head = NULL;
-  int num, tempNum;
+  int num, tempNum, deletePosition;
   cout << "How many numbers do you have?" << endl;
   cin >> num;
   for (int i = 0; i < num; i++){
@@ -108,6 +158,12 @@ int main() {
 
   // now I would like to insert "3" in the 3rd position
   InsertPosition(4, 1);
+  Print();
+
+  // now we want to ask user which node to delete:
+  cout << "please enter a position that you want to delete: " << endl;
+  cin >> deletePosition;
+  DeleteNode(deletePosition); 
   Print();
   return 0;
 } 
